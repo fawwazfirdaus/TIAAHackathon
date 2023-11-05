@@ -1,0 +1,273 @@
+body {
+    background: linear-gradient(to bottom, white, #4266C1);
+    margin: 0;
+    padding: 0;
+    font-family: "Baloo Da-Regular", Helvetica;
+}
+
+.vertical-navbar {
+    position: fixed;
+    top: 10%;
+    left: 5%;
+    background: transparent;
+    z-index: 1000;
+}
+
+.vertical-navbar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.vertical-navbar li {
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.vertical-navbar a {
+    text-decoration: none;
+    color: #333;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+main {
+    overflow-y: scroll;
+    scroll-snap-type: y proximity;
+}
+
+
+main>section {
+    /* overflow-y: scroll; */
+    /* Enable snapping */
+    height: 100vh;
+    /* Make sections full viewport height */
+    scroll-snap-align: start;
+    /* Snap sections to the start of the viewport */
+    scroll-snap-stop: always;
+}
+
+.page1_content {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.summary-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+}
+
+.summary-content {
+    flex: 1;
+}
+
+.container {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.progress-circle {
+    width: 300px;
+    /* Set the width to a specific pixel value */
+    height: 300px;
+    /* Set the height to match the width for a circular shape */
+    border-radius: 50%;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle {
+    width: 80%;
+    /* Set the width of the inner circle */
+    padding-bottom: 80%;
+    /* Maintain a circular shape by matching width and height */
+    border-radius: 50%;
+    background: #4266C1;
+    position: relative;
+}
+
+.progress {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    clip: rect(0, 60%, 100%, 0);
+    /* Adjust the clip values to match the inner circle size */
+    background: #f0f0f0;
+}
+
+.number {
+    font-size: 36px;
+    /* Adjust the font size for the number in the center */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}
+
+.textbubble .text-bubble {
+    grid-column: 1;
+    position: relative;
+    width: 30vh;
+    height: auto;
+    top: 100px;
+    left: 40%;
+    border-radius: 25px;
+    z-index: 1;
+}
+
+.intro {
+    position: relative;
+    width: auto;
+    height: auto;
+    top: 70%;
+    left: 45%;
+    border-radius: 25px;
+    z-index: 4;
+    font-weight: 400;
+    font-size: 32px;
+    padding-bottom: 5%;
+}
+
+.bubble {
+    position: relative;
+    width: 5em;
+    height: auto;
+    top: 100px;
+    left: 60%;
+    border-radius: 25px;
+}
+
+.label {
+    width: 767px;
+    height: 57px;
+}
+
+.label .your-future-starts {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.boxtop {
+    position: relative;
+    width: 90%;
+    height: 70%;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    border-radius: 20px;
+    grid-row: 2;
+    grid-column: 2;
+    padding-left: 5%;
+}
+
+.label .text-wrapper {
+    position: relative;
+    width: 407px;
+    top: 0;
+    left: 60%;
+    font-family: "Angkor-Regular", Helvetica;
+    font-weight: 900;
+    color: #4266c1;
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.box .rectangle {
+    position: relative;
+    width: 100vh;
+    height: 70vh;
+    top: 0;
+    left: 60%;
+    background-color: #4266c1;
+    border-radius: 25px;
+}
+
+.jindo {
+    position: relative;
+    top: 35%;
+    width: 60vh;
+}
+
+.jindoHi {
+    position: relative;
+    width: 48vh;
+    object-fit: cover;
+    grid-column: 1;
+    grid-row: 2;
+    padding-top: 10%;
+    padding-left: 40%;
+    padding-right: 10%;
+
+}
+
+.text-community {
+    position: relative;
+    top: 35%;
+    width: 60vh;
+}
+
+
+
+.chat-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    margin-left: 60%;
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-bubble {
+    max-width: 80%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.user {
+    align-self: flex-end;
+    background-color: #4266C1;
+    color: #fff;
+}
+
+.response {
+    align-self: flex-start;
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+.user-input {
+    margin-top: 10px;
+}
+
+#user-prompt {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#send-button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #4266C1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

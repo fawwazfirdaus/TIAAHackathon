@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Page Update</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styles.css')}}">
+</head>
+
+<body>
+    <nav class="vertical-navbar">
+        <ul>
+            <li><a href="#page1">Home</a></li>
+            <li><a href="#page2">Chat</a></li>
+            <li><a href="#page3">Goals</a></li>
+            <!-- Add more navigation items as needed -->
+        </ul>
+    </nav>
+    <main>
+        <section id="page1">
+            <div class="page1_content">
+                <!-- Content for Page 1 -->
+                <div class="textbubble">
+                    <div class="intro">
+                        Hello, I'm Jindo!
+                    </div>
+                    <img class="text-bubble" src="{{url_for('static', filename='img/Text Bubble.png')}}" alt="sometext" />
+
+                    <div class="bubble2"><img class="bubble" src="{{url_for('static', filename='img/bubble 2.png')}}" alt="sometext"></div>
+
+                </div>
+
+                <div class="label"><img class="your-future-starts" src="{{url_for('static', filename='img/Your Future Starts Now.png')}}"
+                        alt="sometext" />
+                </div>
+                <div class="boxtop">
+                    <div class="summary-section">
+                        <div class="summary-content">
+                            <h2>My Goal</h2>
+                            <p>Goal: Save $5,000</p>
+                            <p>Goal Date: December 31, 2023</p>
+                            <p>Days Left: <span id="days-left">30</span></p>
+                        </div>
+                        <div class="progress-circle">
+                            <div class="circle">
+                                <div class="progress"></div>
+                                <div class="number">50%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img class="jindoHi" src="{{url_for('static', filename='img/Shibainu1.gif')}}" alt="Jindo" />
+
+
+            </div>
+        </section>
+
+        <section id="page2">
+            <div>
+                <!-- Content for Page 2 -->
+                <div class="label">
+                    <div class="text-wrapper">Chat with Jindo</div>
+                    <div class="box">
+                        <div class="rectangle">
+                            <img class="jindo" src="{{url_for('static', filename='img/yoakd.gif')}}" alt="Jindo" />
+                            <div class="chat-container">
+                                <div class="chat">
+                                    <div class="chat-bubble response jindo">
+                                        <p>Hi, I'm Jindo, your financial savvy dog friend</p>
+                                    </div>
+                                    <!-- User and bot responses will be added here dynamically -->
+                                </div>
+                                <div class="user-input">
+                                    <input type="text" id="user-prompt" placeholder="Type your message">
+                                    <button id="send-button">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="user-message-box"></div> <!-- Container for displaying user messages -->
+    <script>
+    document.getElementById("send-button").addEventListener("click", function () {
+        var userInput = document.getElementById("user-prompt").value;
+        fetch("/send-message", {
+            method: "POST",
+            body: JSON.stringify({ message: userInput }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("user-prompt").value = ''; // Clear the input box
+
+            // Add the bot response to the chat
+            const botResponseBubble = document.createElement('div');
+            botResponseBubble.className = 'chat-bubble response jindo';
+            botResponseBubble.innerHTML = `<p>${data.response}</p>`;
+            document.querySelector('.chat').appendChild(botResponseBubble);
+        });
+    });
+    </script>
+
+        <section id="page3">
+            <div>
+                <!-- Content for Page 3 -->
+                <div class="text-community">Community Leader Board</div>
+
+
+                <!-- Display a message from Jinja -->
+                <div id="message"></div>
+
+                <!-- Input field for user input -->
+                <input type="text" id="userInput" placeholder="Enter a message">
+                <button onclick="updateMessage()">Update Message</button>
+            </div>
+        </section>
+    </main>
+
+
+
+</body>
+
+<script>
+    // Calculate and display the number of days left until the goal date
+    const goalDate = new Date('2023-12-31');
+    const today = new Date();
+    const daysLeft = Math.floor((goalDate - today) / (1000 * 60 * 60 * 24));
+    document.getElementById('days-left').textContent = daysLeft;
+
+    // Set the progress circle's percentage (adjust as needed)
+    const progressPercentage = 50;
+    const progressCircle = document.querySelector('.progress');
+    progressCircle.style.clip = `rect(0, ${progressPercentage}%, 100%, 0)`;
+    document.querySelector('.number').textContent = progressPercentage + '%';
+
+    // Get a reference to the chat container
+    const chatContainer = document.querySelector('.chat');
+
+    // Simulate Jindo's introduction message
+    const jindoIntroduction = document.createElement('div');
+    jindoIntroduction.className = 'chat-bubble response jindo';
+    jindoIntroduction.innerHTML = '<p>I can answer alll of your finnancial questions, just ask!</p>';
+
+    // Append the introduction message to the chat
+    chatContainer.appendChild(jindoIntroduction);
+
+    $(document).ready(function () {
+        $("#messageArea").on("submit", function (event) {
+            const date = new Date();
+            const hour = date.getHours();
+            const minute = date.getMinutes();
+            const str_time = hour + ":" + minute;
+            var rawText = $("#text").val();
+
+            var userHtml = '<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send">' + rawText + '<span class="msg_time_send">' + str_time + '</span></div><div class="img_cont_msg"><img src="https://i.ibb.co/d5b84Xw/Untitled-design.png" class="rounded-circle user_img_msg"></div></div>';
+
+            $("#text").val("");
+            $("#messageFormeight").append(userHtml);
+
+            $.ajax({
+                data: {
+                    msg: rawText,
+                },
+                type: "POST",
+                url: "/get",
+            }).done(function (data) {
+                var botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' + data + '<span class="msg_time">' + str_time + '</span></div></div>';
+                $("#messageFormeight").append($.parseHTML(botHtml));
+            });
+            event.preventDefault();
+        });
+    });
+    // Get references to the input field, send button, and chat container
+    const userPromptInput = document.getElementById('user-prompt');
+    const sendButton = document.getElementById('send-button');
+
+    // Function to add a user message bubble
+    function addUserMessage(message) {
+        const userBubble = document.createElement('div');
+        userBubble.className = 'chat-bubble user';
+        userBubble.innerHTML = `<p>${message}</p>`;
+        chatContainer.appendChild(userBubble);
+    }
+
+    // Event listener for the "Send" button
+    sendButton.addEventListener('click', () => {
+        const userPrompt = userPromptInput.value;
+
+        if (userPrompt) {
+            // Add the user message bubble to the chat
+            addUserMessage(userPrompt);
+
+            // You can send the user's input to your Flask server for processing here
+            // Replace the following with your actual AJAX request or Flask integration
+            // fetch('/your-flask-endpoint', {
+            //     method: 'POST',
+            //     body: JSON.stringify({ prompt: userPrompt }),
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     }
+            // })
+            // .then(response => response.json())
+            // .then(data => {
+            //     // Process the response from the server and add a bot response bubble
+            //     // Example:
+            //     const botResponse = 'This is a response from the server.';
+            //     addBotMessage(botResponse);
+            // })
+            // .catch(error => {
+            //     console.error('Error:', error);
+            // });
+
+            // Clear the input field
+            userPromptInput.value = '';
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll("section");
+
+        sections.forEach((section, index) => {
+            section.addEventListener("click", () => {
+                scrollToSection(index);
+            });
+        });
+
+        function scrollToSection(index) {
+            sections[index].scrollIntoView({ behavior: "smooth" });
+        }
+    });
+    // Function to update the message in real-time
+    function updateMessage() {
+        // Get the user's input
+        var userInput = document.getElementById("userInput").value;
+
+        // Update the message using JavaScript
+        var messageDiv = document.getElementById("message");
+        messageDiv.innerHTML = "Jinja says: " + "{{ userInput }}" + "<br>" + "JavaScript says: " + userInput;
+    }
+    // Smooth scrolling when clicking on navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+
+            window.scrollTo({
+                top: target.offsetTop,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+</script>
+
+
+</html>
