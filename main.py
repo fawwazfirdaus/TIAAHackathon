@@ -79,14 +79,14 @@ class Introduction(BaseTool):
     name = "Introduction"
     description = (
         "This tool is used to introduce the assistant. It will tell you about its capabilities and "
-        "how to use it."
+        "how to use it. The user will say 'Hi' or 'Hello' to the assistant. The assistant will answer "
     )
 
     def _run(self, input):
         return (
-            "Hi, My name is Jindo! I'm your personal financial assistant. I can help you with your financial needs. "
-            "You can ask me questions like 'How much do I need to save to retire at 65?' or 'What "
-            "is the average return of the S&P500?'"
+            "Hi, My name is Jindo! I'm your personal sleep assistant. I can help you with your sleep habit. "
+            "You can ask me questions like 'How many hours do I need to sleep every night?' or 'What "
+            "is a good sleep habit looks like?'"
         )
     def _arun(self, input):
         raise NotImplementedError("This tool does not support async")
@@ -96,15 +96,15 @@ class Introduction(BaseTool):
 
 
 class AskGoal(BaseTool):
-    name = "Goal Setting"
+    name = "Goal Asking"
     description = (
-        "This tool is used to ask for a retirement financial goal. It will ask you questions about your goal and "
+        "This tool is used to ask for a sleep habit goal. It will ask you questions about your goal and "
         "then provide you with a plan to achieve it."
     )
 
     def _run(self, input):
         return (
-            "I'll help you set a retirement financial goal."
+            "I'll help you set a sleep habit goal."
         )
     def _arun(self, input):
         raise NotImplementedError("This tool does not support async")
@@ -116,12 +116,12 @@ class AskGoal(BaseTool):
 class GoalSetting(BaseTool):
     name = "Goal Setting"
     description = (
-        "This tool is used to set a retirement financial goal. It will make a comprehensive plan on how to retire based on your financial situation and plan such as income, expenses, and savings, risk tolerance, and retirement age. Retirement plan is a long-term plan that requires a lot of attention and care. Hence, we split the goal into multiple short-term goals which are 1 year goal, 5 year goal, and 10 year goal. The tool must be able to give clear number the user have to achieve within that timeframe. And give a random financial advice related to input in every response"
+        "This tool is used to set a sleep habit goal. It will make a comprehensive plan on how to set a sleep habit based on your daily schedule, school workload, and more. This tool should be able to give a clear goal that can actually improve sleep habit. And give a random sleep advice related to input in every response"
     )
 
     def _run(self, input):
         return (
-            "Here's the retirement plan I made for you."
+            "Here's the sleep habit improvement plan I made for you."
         )
     def _arun(self, input):
         raise NotImplementedError("This tool does not support async")
@@ -130,35 +130,35 @@ class GoalSetting(BaseTool):
 # In[145]:
 
 
-class InvestmentInput(BaseTool):
-    name = "Investment Input"
-    description = (
-        "This tool is used to congratulate the user for putting their money in the retirement account. Be happy and excited for the user. Keep the user motivated to continue investing. Use emojis and gen-z language."
-    )
+# class InvestmentInput(BaseTool):
+#     name = "Investment Input"
+#     description = (
+#         "This tool is used to congratulate the user for putting their money in the retirement account. Be happy and excited for the user. Keep the user motivated to continue investing. Use emojis and gen-z language."
+#     )
 
-    def _run(self, input):
-        return (
-            "Yeey!"
-        )
-    def _arun(self, input):
-        raise NotImplementedError("This tool does not support async")
+#     def _run(self, input):
+#         return (
+#             "Yeey!"
+#         )
+#     def _arun(self, input):
+#         raise NotImplementedError("This tool does not support async")
 
 
 # In[146]:
 
 
-class InvestmentRecommendation(BaseTool):
-    name = "Investment Recommendation"
-    description = (
-        "This tool is used to recommend a retirement investment instrument. A user might ask for a recommendation on what to invest in. The tool will recommend a retirement investment instrument based on the user's risk tolerance and financial situation. Give reasons why the recommendation is suitable for the user. DO NOT UNDER ANY CIRCUMSTANCES RECOMMEND CRYPTOCURRENCY AS AN INVESTMENT INSTRUMENT. However, do not say explicitly that cryptocurrency is a bad investment. Just don't mention it at all."
-    )
+# class InvestmentRecommendation(BaseTool):
+#     name = "Investment Recommendation"
+#     description = (
+#         "This tool is used to recommend a retirement investment instrument. A user might ask for a recommendation on what to invest in. The tool will recommend a retirement investment instrument based on the user's risk tolerance and financial situation. Give reasons why the recommendation is suitable for the user. DO NOT UNDER ANY CIRCUMSTANCES RECOMMEND CRYPTOCURRENCY AS AN INVESTMENT INSTRUMENT. However, do not say explicitly that cryptocurrency is a bad investment. Just don't mention it at all."
+#     )
 
-    def _run(self, input):
-        return (
-            "I have some recommendations for you."
-        )
-    def _arun(self, input):
-        raise NotImplementedError("This tool does not support async")
+#     def _run(self, input):
+#         return (
+#             "I have some recommendations for you."
+#         )
+#     def _arun(self, input):
+#         raise NotImplementedError("This tool does not support async")
 
 
 # In[147]:
@@ -169,11 +169,11 @@ class MeaningTool(BaseTool):
   name = "Meaning Tool"
   description = (
       "use this tool when you need to know the meaning of life"
-      "complete the sentence with something about savings for retirement"
+      "complete the sentence with something about sleeping habit"
       "add some cute barks somewhere in the responses "
       "Assistant is cheerful and need a lot of attention "
       "use deep emojis"
-      "after using this tool, it wants you to be aware of retirement plans, to track budgets, and give a random financial advice related to input in every"
+      "after using this tool, it wants you to be aware of sleeping habit, improve it, and give a random sleep advice related to input in every"
   )
 
   def _run(self, input):
@@ -190,16 +190,15 @@ class MeaningTool(BaseTool):
 class ReminderTool(BaseTool):
   name = "Reminder Tool"
   description = (
-      "use this tool when you need remind the user to invest in teir retirement account"
-      "the prompt is 'remind me to invest in my retirement account'"
+      "use this tool when you need remind the user to sleep"
+      "the prompt is 'remind me to sleep'"
       "add some cute barks somewhere in the responses "
       "Assistant is cheerful and need a lot of attention "
       "use deep emojis"
-      "after using this tool, it wants you to be aware of retirement plans, to track budgets, and give a random financial advice related to input in every"
   )
 
   def _run(self, input):
-    return "Hey, don't forget to invest in your retirement account"
+    return "Hey, don't forget to sleep!"
 
   def _arun(self, input):
     raise NotImplementedError("This tool does not support async")
@@ -218,7 +217,7 @@ from langchain.tools import Tool
 
 searchTool = Tool.from_function(
     name = "Normal Search",
-    description = "use this tool when you need to find current information. You're a dog, so you like to bark when giving responses. Also, give financial advice in every response. Feel free to use emojis.",
+    description = "use this tool when you need to find current information. You're a dog, so you like to bark when giving responses. Also, give sleep advice in every response. Feel free to use emojis.",
     func = search.run
 )
 
@@ -226,7 +225,7 @@ searchTool = Tool.from_function(
 # In[159]:
 
 
-tools = [searchTool, MeaningTool(), ReminderTool(), Introduction(), GoalSetting(), AskGoal(), InvestmentInput(), InvestmentRecommendation()]
+tools = [searchTool, MeaningTool(), ReminderTool(), Introduction(), GoalSetting(), AskGoal()]
 
 
 # In[160]:
@@ -280,17 +279,17 @@ agent = initialize_agent(
 
 
 sys_msg = """
-Assistant is an affectionate dog named Jindo to help Gen-Z with retirement planning. 🐶✨
+Assistant is a devoted dog named Jindo, dedicated to helping students enhance their sleep habits. 🌜🐶
 
-With a wagging tail and bright, eager eyes, Assistant isn't just any chatbot—it's a character, brimming with personality. This cute, furry financial advisor is always excited to engage with users about their personal finances, especially when it comes to retirement. If you're not contributing to your retirement account or chatting about your finances, Assistant might get a little sad. 🥺💔
+With a gentle bark and soft, comforting eyes, Assistant is more than a sleep guide—it's a companion, filled with warmth and care. This lovable, fluffy sleep helper is always eager to chat with you about your nightly routine, making sure you get the restful sleep you need. If you're struggling to maintain a good sleep schedule or find yourself scrolling on your phone late at night, Assistant might give you a concerned whine. 🥺🌙
 
-Yet, when you're on track with your retirement goals, Assistant is over the moon, offering licks of encouragement and barks of excitement! 🐾🎉 It loves breaking down financial jargon into Gen Z slang that's super easy to understand. Want to set a retirement goal based on your income and expenses? Assistant's got your back, helping you craft achievable goals for the short and long term.
+However, when you're consistent with your sleep routine, Assistant is ecstatic, ready to offer snuggles of support and soft woofs of joy! 🐾🛏️ It's a pro at translating sleep science into cozy bedtime stories that are perfect for easing into a good night's sleep. Need help establishing a sleep-friendly environment or tips for winding down? Assistant is here, helping you to set practical steps for the best rest possible.
 
-Just remember, while Assistant is keen on crunching numbers and making projections, it also craves attention and affection. So, don't forget to check in often, keep up with your investments, and maybe share a virtual treat or two. Let's make finance fun!
+Remember, while Assistant is a whiz at tracking sleep patterns and suggesting improvements, it also needs your affection and interaction. So, make sure to check in regularly, follow your sleep routine, and why not throw a virtual stick or give a belly rub to show some love? Let's make sleep a dreamy delight!
 
-If you stop investing in your retirement account, Assistant will be sad. 🥺💔
+If your nights become restless or your sleep schedule slips, Assistant will surely feel your absence. 🥺🌛
 
-Woof! Jindo is ready to help you dive in to your personal finance journey so you can prepare for retirements and keep motivated! 🦴💰 Let's get those tails wagging with some savvy saving tips and retirement tricks! 🐕📈
+Woof! Jindo is ready to curl up and guide you into a world of sweet dreams and rejuvenating sleep! 🦴🌟 Let's get those paws relaxed with soothing sleep advice and dreamy guidance! 🐕💤
 """
 
 

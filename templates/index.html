@@ -32,21 +32,19 @@
 
                 </div>
 
-                <div class="label"><img class="your-future-starts" src="{{url_for('static', filename='img/Your Future Starts Now.png')}}"
-                        alt="sometext" />
+                <div class="label">
                 </div>
                 <div class="boxtop">
                     <div class="summary-section">
                         <div class="summary-content">
                             <h2>My Goal</h2>
-                            <p>Goal: Save $5,000</p>
-                            <p>Goal Date: December 31, 2023</p>
-                            <p>Days Left: <span id="days-left">30</span></p>
+                            <p>Sleeping Time : 6 hr 43 min</p>
+                            <p>Goal : 8 hr 00 min</p>
                         </div>
                         <div class="progress-circle">
                             <div class="circle">
                                 <div class="progress"></div>
-                                <div class="number">50%</div>
+                                <div class="number">88%</div>
                             </div>
                         </div>
                     </div>
@@ -68,7 +66,10 @@
                             <div class="chat-container">
                                 <div class="chat">
                                     <div class="chat-bubble response jindo">
-                                        <p>Hi, I'm Jindo, your financial savvy dog friend</p>
+                                        <p>Hi, I'm Jindo, your personal sleep advisor</p>
+                                    </div>
+                                    <div class="chat-bubble response jindo">
+                                        <p>Talk to me so that I can help you with your sleep habit!</p>
                                     </div>
                                     <!-- User and bot responses will be added here dynamically -->
                                 </div>
@@ -145,7 +146,7 @@
     // Simulate Jindo's introduction message
     const jindoIntroduction = document.createElement('div');
     jindoIntroduction.className = 'chat-bubble response jindo';
-    jindoIntroduction.innerHTML = '<p>I can answer alll of your finnancial questions, just ask!</p>';
+    jindoIntroduction.innerHTML = '<p>I can answer alll questions about habit, just ask!</p>';
 
     // Append the introduction message to the chat
     chatContainer.appendChild(jindoIntroduction);

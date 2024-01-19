@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to bottom, white, #4266C1);
+    background: linear-gradient(to bottom, white, #d6b9ec);
     margin: 0;
     padding: 0;
     font-family: "Baloo Da-Regular", Helvetica;
@@ -87,7 +87,7 @@ main>section {
     padding-bottom: 80%;
     /* Maintain a circular shape by matching width and height */
     border-radius: 50%;
-    background: #4266C1;
+    background: #d6b9ec;
     position: relative;
 }
 
@@ -174,7 +174,7 @@ main>section {
     left: 60%;
     font-family: "Angkor-Regular", Helvetica;
     font-weight: 900;
-    color: #4266c1;
+    color: #d6b9ec;
     font-size: 40px;
     letter-spacing: 0;
     line-height: normal;
@@ -186,7 +186,7 @@ main>section {
     height: 70vh;
     top: 0;
     left: 60%;
-    background-color: #4266c1;
+    background-color: #d6b9ec;
     border-radius: 25px;
 }
 
@@ -241,7 +241,7 @@ main>section {
 
 .user {
     align-self: flex-end;
-    background-color: #4266C1;
+    background-color: #d6b9ec;
     color: #fff;
 }
 
@@ -265,7 +265,7 @@ main>section {
 #send-button {
     margin-left: 10px;
     padding: 10px 20px;
-    background-color: #4266C1;
+    background-color: #d6b9ec;
     color: #fff;
     border: none;
     border-radius: 5px;
